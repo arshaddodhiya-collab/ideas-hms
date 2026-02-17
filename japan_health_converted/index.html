@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KENKO - Health Management Platform</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-pink-50 p-4 md:p-8"
+  >
+    <div class="max-w-7xl mx-auto">
+      <!-- Header with Japanese Aesthetic -->
+      <div
+        class="bg-white rounded-lg shadow-2xl p-8 md:p-12 mb-8 border-t-4 border-red-600"
+      >
+        <div class="flex flex-col items-center mb-6">
+          <div class="flex items-center gap-6 mb-4">
+            <i data-lucide="cherry" class="w-10 h-10 text-pink-500"></i>
+            <div class="text-center">
+              <h1
+                class="text-5xl md:text-6xl font-light tracking-wider text-gray-800 mb-2"
+              >
+                KENKO
+              </h1>
+              <p class="text-3xl text-gray-600 mb-1">健康</p>
+              <p class="text-sm text-gray-500 tracking-widest">
+                HEALTH MANAGEMENT PLATFORM
+              </p>
+            </div>
+            <i data-lucide="cherry" class="w-10 h-10 text-pink-500"></i>
+          </div>
+        </div>
+        <div class="border-t border-gray-200 pt-6">
+          <p
+            class="text-center text-gray-600 leading-relaxed max-w-3xl mx-auto"
+          >
+            Where Japanese precision, hospitality, and preventive care
+            philosophy meet cutting-edge health technology—designed for a
+            super-aged society that values both longevity and quality of life
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation - Japanese style tabs -->
+      <div
+        class="bg-white rounded-lg shadow-lg mb-8 p-2 flex flex-wrap gap-2"
+        id="navigation"
+      >
+        <!-- Tabs will be injected via JS -->
+      </div>
+
+      <!-- Views Container -->
+      <div id="views-container">
+        <!-- Overview View -->
+        <div data-view="overview" class="active space-y-8">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500"
+            >
+              <div class="text-3xl mb-3 text-center">🏥</div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-800 text-center">
+                Universal Access
+              </h3>
+              <p class="text-gray-600 text-sm text-center">
+                Integrated with national health insurance and My Number system
+                for seamless care anywhere in Japan
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500"
+            >
+              <div class="text-3xl mb-3 text-center">🎌</div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-800 text-center">
+                Japanese Values
+              </h3>
+              <p class="text-gray-600 text-sm text-center">
+                Built on omotenashi hospitality, mibyou prevention, and respect
+                for aging society needs
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500"
+            >
+              <div class="text-3xl mb-3 text-center">⚡</div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-800 text-center">
+                Precision Tech
+              </h3>
+              <p class="text-gray-600 text-sm text-center">
+                Combines miniaturized sensors, robotics, and AI with legendary
+                Japanese quality standards
+              </p>
+            </div>
+          </div>
+
+          <!-- Design Principles -->
+          <div
+            class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl p-8 text-white"
+          >
+            <h3 class="text-3xl font-light mb-6 text-center">
+              Japanese Design Philosophy
+            </h3>
+            <div
+              class="grid md:grid-cols-2 gap-6"
+              id="design-principles-container"
+            >
+              <!-- JS injected content -->
+            </div>
+          </div>
+
+          <!-- Key Stats -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h4 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+              Built for Japan's Reality
+            </h4>
+            <div class="grid md:grid-cols-4 gap-6" id="stats-container">
+              <!-- JS injected content -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Modules View -->
+        <div data-view="modules" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6" id="modules-container">
+            <!-- JS injected content -->
+          </div>
+          <p class="text-center text-gray-600 text-sm">
+            クリックして詳細を表示 (Click for details)
+          </p>
+        </div>
+
+        <!-- Japanese Conventions View -->
+        <div data-view="conventions" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-8 mb-6">
+            <h3 class="text-3xl font-light text-gray-800 mb-4 text-center">
+              日本の医療文化
+            </h3>
+            <p class="text-center text-gray-600 mb-8">
+              Japanese Healthcare Culture & Conventions
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6" id="conventions-container">
+            <!-- JS injected content -->
+          </div>
+
+          <div
+            class="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-8 border-2 border-red-200"
+          >
+            <h4 class="text-xl font-semibold text-gray-800 mb-4 text-center">
+              なぜ日本に合わせるのか？ (Why Adapt to Japan?)
+            </h4>
+            <p
+              class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto"
+            >
+              Healthcare isn't just about technology—it's deeply cultural. What
+              works in Silicon Valley won't work in Tokyo without understanding
+              the importance of family involvement, respect for privacy,
+              seasonal consciousness, and the unique needs of a super-aged
+              society. KENKO is built from the ground up for Japanese values and
+              expectations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Technology View -->
+        <div data-view="technology" class="space-y-6">
+          <div
+            class="grid md:grid-cols-3 gap-6"
+            id="technology-features-container"
+          >
+            <!-- JS injected content -->
+          </div>
+
+          <!-- Integration Highlights -->
+          <div
+            class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow-2xl p-8 text-white"
+          >
+            <h3 class="text-3xl font-light mb-6 text-center">
+              Ecosystem Integration
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                <h4 class="text-xl mb-4 text-blue-200">
+                  National Infrastructure
+                </h4>
+                <ul class="space-y-2 text-sm" id="national-infra-list">
+                  <!-- JS content -->
+                </ul>
+              </div>
+              <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                <h4 class="text-xl mb-4 text-purple-200">Consumer Ecosystem</h4>
+                <ul class="space-y-2 text-sm" id="consumer-eco-list">
+                  <!-- JS content -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hardware Partners -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h4 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+              Japanese Hardware Excellence
+            </h4>
+            <div
+              class="grid md:grid-cols-3 gap-6 text-center"
+              id="hardware-partners-container"
+            >
+              <!-- JS injected content -->
+            </div>
+          </div>
+
+          <!-- Innovation Corner -->
+          <div
+            class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-8 border-2 border-blue-200"
+          >
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">
+              🚀 Uniquely Japanese Innovations
+            </h4>
+            <div class="grid md:grid-cols-2 gap-4" id="innovations-container">
+              <!-- JS injected content -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        class="mt-12 bg-gradient-to-r from-red-600 to-pink-600 rounded-xl shadow-2xl p-8 text-white text-center"
+      >
+        <p class="text-xl mb-2">健康は財産である</p>
+        <p class="text-white/90 mb-4">Health is wealth</p>
+        <p class="text-sm text-white/80 max-w-2xl mx-auto">
+          KENKO honors Japan's commitment to universal healthcare, preventive
+          medicine, and quality of life for all ages—wrapped in technology that
+          feels distinctly Japanese.
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

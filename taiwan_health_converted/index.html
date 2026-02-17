@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taiwan Health Platform - Health Taiwan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 p-4 md:p-8"
+  >
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div
+        class="bg-gradient-to-r from-blue-600 via-green-500 to-red-500 rounded-2xl shadow-2xl p-8 md:p-12 mb-8 text-white"
+      >
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div class="flex-1 text-center md:text-left">
+            <div
+              class="flex items-center gap-3 justify-center md:justify-start mb-4"
+            >
+              <i data-lucide="shield" class="w-12 h-12"></i>
+              <h1 class="text-5xl md:text-6xl font-bold">健康台灣</h1>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-light mb-2">Health Taiwan</h2>
+            <p class="text-xl text-blue-100">全民健保智慧管理平台</p>
+            <p class="text-lg text-blue-50 mt-2">
+              National Health Insurance Smart Management Platform
+            </p>
+          </div>
+          <div class="bg-white/20 backdrop-blur rounded-xl p-6 text-center">
+            <div class="text-4xl font-bold mb-2">99.9%</div>
+            <div class="text-sm">Population Coverage</div>
+            <div class="text-xs mt-1 text-blue-100">
+              World's Best Healthcare Access
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div
+        class="bg-white rounded-xl shadow-lg p-2 mb-8 flex flex-wrap gap-2"
+        id="navigation"
+      >
+        <!-- Tabs will be injected via JS -->
+      </div>
+
+      <!-- Views Container -->
+      <div id="views-container">
+        <!-- Overview View -->
+        <div data-view="overview" class="active space-y-8">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600"
+            >
+              <i data-lucide="globe" class="w-10 h-10 text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                World-Leading NHI
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Built on Taiwan's #1 ranked healthcare system with 99.9%
+                coverage, low costs, and comprehensive benefits including both
+                Western and Traditional Chinese Medicine
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-600"
+            >
+              <i
+                data-lucide="smartphone"
+                class="w-10 h-10 text-green-600 mb-4"
+              ></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Digital First
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Designed for Taiwan's tech-savvy population (92% smartphone
+                users) with seamless integration into daily life via convenience
+                stores, MRT, and LINE
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-red-600"
+            >
+              <i data-lucide="heart" class="w-10 h-10 text-red-600 mb-4"></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Accessible Everywhere
+              </h3>
+              <p class="text-gray-600 text-sm">
+                From Taipei 101 to offshore islands—equal access through dense
+                pharmacy networks, mobile clinics, and telehealth reaching every
+                corner of Taiwan
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl p-8 text-white"
+          >
+            <h3 class="text-3xl font-light mb-6 text-center">
+              Why Taiwan's Model Works
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-xl font-semibold mb-4 text-blue-300">
+                  Single-Payer Efficiency
+                </h4>
+                <ul
+                  class="space-y-2 text-sm text-gray-300"
+                  id="efficiency-list"
+                >
+                  <!-- JS content -->
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold mb-4 text-purple-300">
+                  Technology Integration
+                </h4>
+                <ul class="space-y-2 text-sm text-gray-300" id="tech-list">
+                  <!-- JS content -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-4" id="overview-stats">
+            <!-- JS content -->
+          </div>
+        </div>
+
+        <!-- Core Modules View -->
+        <div data-view="modules" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6" id="modules-container">
+            <!-- JS content -->
+          </div>
+          <p class="text-center text-gray-600">
+            點擊卡片查看詳細功能 (Click cards for detailed features)
+          </p>
+        </div>
+
+        <!-- User Interfaces View -->
+        <div data-view="users" class="space-y-6">
+          <div class="grid md:grid-cols-3 gap-6" id="users-portals">
+            <!-- JS content -->
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6" id="tech-ecosystem">
+            <!-- JS content -->
+          </div>
+        </div>
+
+        <!-- Taiwan Advantages View -->
+        <div data-view="advantages" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center mb-6">
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">台灣醫療優勢</h3>
+            <p class="text-gray-600">Taiwan Healthcare Advantages</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6" id="advantages-container">
+            <!-- JS content -->
+          </div>
+
+          <div
+            class="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-xl p-8 text-white"
+          >
+            <h4 class="text-2xl font-bold mb-6 text-center">
+              What Makes Taiwan's System Unique
+            </h4>
+            <div class="grid md:grid-cols-2 gap-6" id="unique-system-container">
+              <!-- JS content -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Innovation View -->
+        <div data-view="innovation" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center mb-6">
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">創新功能</h3>
+            <p class="text-gray-600">Innovations Unique to Taiwan</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6" id="features-container">
+            <!-- JS content -->
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-xl p-8 text-white"
+          >
+            <h4 class="text-2xl font-bold mb-6 text-center">
+              Taiwan-Specific Integrations
+            </h4>
+            <div class="grid md:grid-cols-3 gap-6" id="integrations-container">
+              <!-- JS content -->
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Impact Metrics
+            </h4>
+            <div class="grid md:grid-cols-3 gap-6" id="metrics-container">
+              <!-- JS content -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        class="mt-12 bg-gradient-to-r from-blue-600 via-green-500 to-red-500 rounded-2xl shadow-2xl p-8 text-white text-center"
+      >
+        <p class="text-2xl font-bold mb-3">全民健保，照顧全民健康</p>
+        <p class="text-xl text-white/90 mb-4">
+          National Health Insurance - Healthcare for All
+        </p>
+        <p class="text-sm text-white/80 max-w-3xl mx-auto">
+          Health Taiwan platform honors the spirit of Taiwan's NHI
+          system—accessible, affordable, and comprehensive healthcare as a
+          fundamental right, enhanced by technology that meets people where they
+          are: convenience stores, MRT stations, temples, and night markets.
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

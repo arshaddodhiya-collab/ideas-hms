@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MUSHIN</title>
+
+    <!-- Tailwind CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+
+  <body class="bg-black text-white">
+    <div class="min-h-screen p-8 max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div class="flex justify-center items-center gap-4 mb-4">
+          <i data-lucide="circle" class="text-red-500 w-12 h-12"></i>
+          <h1 class="text-5xl font-light tracking-widest">MUSHIN</h1>
+          <i data-lucide="circle" class="text-red-500 w-12 h-12"></i>
+        </div>
+        <p class="text-gray-400 text-xl">無心 // No-Mind Interface</p>
+        <p class="text-gray-500 max-w-2xl mx-auto">
+          A wearable neural-haptic system that transforms ancient Eastern
+          practices into intuitive human-computer interaction
+        </p>
+      </div>
+
+      <!-- Mode Toggle -->
+      <div class="flex justify-center gap-4 mb-12">
+        <button
+          onclick="switchMode('overview')"
+          class="mode-btn bg-red-600 px-6 py-3 rounded-lg"
+        >
+          Product Overview
+        </button>
+        <button
+          onclick="switchMode('features')"
+          class="mode-btn bg-gray-800 px-6 py-3 rounded-lg"
+        >
+          Core Features
+        </button>
+        <button
+          onclick="switchMode('philosophy')"
+          class="mode-btn bg-gray-800 px-6 py-3 rounded-lg"
+        >
+          Design Philosophy
+        </button>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div id="overview" class="mode">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gray-900 p-8 rounded-2xl border border-gray-700">
+            <h3 class="text-2xl mb-4 flex gap-3">
+              <i data-lucide="eye" class="text-red-500"></i>
+              Product Form
+            </h3>
+            <p class="text-gray-300 mb-4">
+              Forearm sleeve with flexible e-ink display + neural headband
+            </p>
+          </div>
+
+          <div class="bg-red-950 p-8 rounded-2xl border border-red-900">
+            <h3 class="text-2xl mb-4 flex gap-3">
+              <i data-lucide="zap" class="text-red-500"></i>
+              Core Innovation
+            </h3>
+            <p class="text-gray-300">
+              Technology that harmonizes with consciousness.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div id="features" class="mode hidden">
+        <div id="featuresContainer" class="grid md:grid-cols-2 gap-6"></div>
+      </div>
+
+      <!-- PHILOSOPHY -->
+      <div id="philosophy" class="mode hidden text-center text-gray-300">
+        <h3 class="text-3xl mb-6">Design Principles</h3>
+        <p>Wu Wei • Qi • Ma • Shuren</p>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      let selectedFeature = null;
+
+      const features = [
+        {
+          id: "ink",
+          title: "Adaptive Ink Flow",
+          icon: "droplet",
+          desc: "Pressure-sensitive nanomaterial responds to breath and heart rhythm.",
+        },
+        {
+          id: "kata",
+          title: "Kinetic Memory Weaving",
+          icon: "activity",
+          desc: "Motion sensors turn martial arts into computing gestures.",
+        },
+        {
+          id: "meditation",
+          title: "Stillness Zone",
+          icon: "brain",
+          desc: "Brainwave synchronized meditation field.",
+        },
+        {
+          id: "breath",
+          title: "Pneumatic Command System",
+          icon: "wind",
+          desc: "Control interfaces using breath patterns.",
+        },
+      ];
+
+      function renderFeatures() {
+        const container = document.getElementById("featuresContainer");
+        container.innerHTML = "";
+
+        features.forEach((f) => {
+          const div = document.createElement("div");
+          div.className = "bg-gray-900 p-6 rounded-xl cursor-pointer border";
+
+          div.innerHTML = `
+      <div class="flex gap-3 mb-3">
+        <i data-lucide="${f.icon}" class="w-6 h-6"></i>
+        <h3 class="text-xl">${f.title}</h3>
+      </div>
+      <p class="feature-desc hidden text-gray-400 mt-2">${f.desc}</p>
+    `;
+
+          div.onclick = () => {
+            const desc = div.querySelector(".feature-desc");
+            desc.classList.toggle("hidden");
+          };
+
+          container.appendChild(div);
+        });
+
+        lucide.createIcons();
+      }
+
+      renderFeatures();
+
+      function switchMode(mode) {
+        document
+          .querySelectorAll(".mode")
+          .forEach((m) => m.classList.add("hidden"));
+        document.getElementById(mode).classList.remove("hidden");
+
+        document.querySelectorAll(".mode-btn").forEach((b) => {
+          b.classList.remove("bg-red-600");
+          b.classList.add("bg-gray-800");
+        });
+
+        event.target.classList.add("bg-red-600");
+      }
+    </script>
+  </body>
+</html>

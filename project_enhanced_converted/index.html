@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taiwan HMS Enhancement</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 p-6"
+  >
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div
+        class="bg-gradient-to-r from-blue-600 via-green-500 to-red-500 rounded-2xl shadow-2xl p-8 mb-8 text-white"
+      >
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <i data-lucide="shield" class="w-12 h-12"></i>
+              <h1 class="text-3xl md:text-5xl font-bold">
+                Taiwan HMS Enhancement
+              </h1>
+            </div>
+            <p class="text-xl text-blue-100 mb-2">
+              Upgrade Plan for NHI Smart Medical Management System
+            </p>
+            <p class="text-blue-50">
+              Transforming your Spring Boot HMS for Taiwan's NHI System
+            </p>
+          </div>
+          <div
+            class="bg-white/20 backdrop-blur rounded-xl p-6 text-center min-w-[140px]"
+          >
+            <div class="text-4xl font-bold mb-1">7</div>
+            <div class="text-sm">New Modules</div>
+            <div class="text-4xl font-bold mb-1 mt-3">15+</div>
+            <div class="text-xs">New Tables</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation - Tabs injected via JS -->
+      <div
+        class="bg-white rounded-xl shadow-lg p-2 mb-8 flex flex-wrap gap-2"
+        id="navigation"
+      >
+        <!-- JS content -->
+      </div>
+
+      <!-- Views Container -->
+      <div id="views-container">
+        <!-- Overview View -->
+        <div data-view="overview" class="active space-y-8">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-600"
+            >
+              <i data-lucide="shield" class="w-10 h-10 text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                NHI Integration
+              </h3>
+              <p class="text-gray-600 text-sm mb-3">
+                Connect to Taiwan's world-renowned universal healthcare system
+                with 99.9% coverage
+              </p>
+              <div class="bg-blue-50 rounded-lg p-3">
+                <div class="text-2xl font-bold text-blue-600">23M+</div>
+                <div class="text-xs text-gray-600">Active IC Cardholders</div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-600"
+            >
+              <i data-lucide="leaf" class="w-10 h-10 text-green-600 mb-4"></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                TCM + Western
+              </h3>
+              <p class="text-gray-600 text-sm mb-3">
+                Unique dual-track system covering both Traditional Chinese
+                Medicine and Western medicine
+              </p>
+              <div class="bg-green-50 rounded-lg p-3">
+                <div class="text-2xl font-bold text-green-600">50%</div>
+                <div class="text-xs text-gray-600">Use Both Modalities</div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-600"
+            >
+              <i
+                data-lucide="database"
+                class="w-10 h-10 text-purple-600 mb-4"
+              ></i>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Data Architecture
+              </h3>
+              <p class="text-gray-600 text-sm mb-3">
+                Comprehensive schema additions with 15+ new tables and
+                government API integrations
+              </p>
+              <div class="bg-purple-50 rounded-lg p-3">
+                <div class="text-2xl font-bold text-purple-600">5</div>
+                <div class="text-xs text-gray-600">External APIs</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl p-8 text-white"
+          >
+            <h3 class="text-3xl font-light mb-6 text-center">
+              Why Taiwan-Specific?
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                <h4 class="text-xl font-semibold mb-3 text-blue-300">
+                  Unique Healthcare System
+                </h4>
+                <ul
+                  class="space-y-2 text-sm text-gray-300"
+                  id="unique-system-list"
+                >
+                  <!-- JS content -->
+                </ul>
+              </div>
+              <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                <h4 class="text-xl font-semibold mb-3 text-purple-300">
+                  Technology Landscape
+                </h4>
+                <ul
+                  class="space-y-2 text-sm text-gray-300"
+                  id="tech-landscape-list"
+                >
+                  <!-- JS content -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Success Metrics
+            </h4>
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-3xl font-bold text-blue-600 mb-2">>95%</div>
+                <div class="text-sm text-gray-600">
+                  Claim Submission Success
+                </div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-3xl font-bold text-green-600 mb-2"><2%</div>
+                <div class="text-sm text-gray-600">Claim Rejection Rate</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-3xl font-bold text-purple-600 mb-2">99.9%</div>
+                <div class="text-sm text-gray-600">System Uptime</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-3xl font-bold text-red-600 mb-2"><2hrs</div>
+                <div class="text-sm text-gray-600">
+                  Prescription Transfer Time
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modules View -->
+        <div data-view="modules" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+              7 Core Modules
+            </h3>
+            <p class="text-gray-600">
+              Click each module to see detailed features, entities, and APIs
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6" id="modules-container">
+            <!-- JS content -->
+          </div>
+        </div>
+
+        <!-- Workflow View -->
+        <div data-view="workflow" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+              Taiwan NHI Patient Workflow
+            </h3>
+            <p class="text-gray-600">
+              End-to-end journey from check-in to claims submission
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="space-y-6" id="workflow-container">
+              <!-- JS content -->
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl shadow-xl p-8 text-white"
+          >
+            <h4 class="text-2xl font-bold mb-4">Integration Points</h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-semibold mb-3 text-purple-100">
+                  Real-Time Integrations
+                </h5>
+                <ul class="space-y-2 text-sm" id="realtime-integ-list">
+                  <!-- JS content -->
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-semibold mb-3 text-pink-100">
+                  Batch Integrations
+                </h5>
+                <ul class="space-y-2 text-sm" id="batch-integ-list">
+                  <!-- JS content -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roadmap View -->
+        <div data-view="roadmap" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+              20-Week Implementation Roadmap
+            </h3>
+            <p class="text-gray-600">
+              Phased approach from foundation to production deployment
+            </p>
+          </div>
+
+          <div class="flex gap-2 mb-6 overflow-x-auto pb-2" id="roadmap-tabs">
+            <!-- JS content -->
+          </div>
+
+          <div id="roadmap-content">
+            <!-- JS content -->
+          </div>
+        </div>
+
+        <!-- Technical View -->
+        <div data-view="technical" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+              Technical Stack Extensions
+            </h3>
+            <p class="text-gray-600">
+              New components and integrations required for Taiwan HMS
+            </p>
+          </div>
+          <div id="technical-container" class="space-y-6">
+            <!-- JS content -->
+          </div>
+        </div>
+
+        <!-- Quick Wins View -->
+        <div data-view="quickwins" class="space-y-6">
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">⚡ Quick Wins</h3>
+            <p class="text-gray-600">
+              Start here - implement these in hours, not weeks
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6" id="quickwins-container">
+            <!-- JS content -->
+          </div>
+          <div
+            class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl shadow-xl p-8 text-gray-900"
+          >
+            <h4 class="text-2xl font-bold mb-4">🚀 Implementation Strategy</h4>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-white/90 rounded-lg p-4">
+                <div class="text-3xl mb-2">1️⃣</div>
+                <h5 class="font-semibold mb-2">Start Small</h5>
+                <p class="text-sm">
+                  Begin with quick wins to show immediate value and build
+                  momentum
+                </p>
+              </div>
+              <div class="bg-white/90 rounded-lg p-4">
+                <div class="text-3xl mb-2">2️⃣</div>
+                <h5 class="font-semibold mb-2">Critical Path</h5>
+                <p class="text-sm">
+                  Focus on NHI IC Card and Claims first - these are
+                  revenue-critical
+                </p>
+              </div>
+              <div class="bg-white/90 rounded-lg p-4">
+                <div class="text-3xl mb-2">3️⃣</div>
+                <h5 class="font-semibold mb-2">Iterate & Learn</h5>
+                <p class="text-sm">
+                  Test with sandbox APIs before production, gather feedback
+                  continuously
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h4 class="text-xl font-bold text-gray-800 mb-6">
+              📋 Week 1 Checklist
+            </h4>
+            <div class="space-y-3" id="checklist-container">
+              <!-- JS content -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        class="mt-12 bg-gradient-to-r from-blue-600 via-green-500 to-red-500 rounded-2xl shadow-2xl p-8 text-white text-center"
+      >
+        <h4 class="text-2xl font-bold mb-3">Ready to Transform Your HMS?</h4>
+        <p class="text-lg mb-4 text-white/90">
+          This enhancement plan provides everything needed to adapt your Spring
+          Boot HMS for Taiwan's world-class National Health Insurance system
+        </p>
+        <div class="flex justify-center gap-8 text-sm flex-wrap">
+          <div>
+            <div class="text-3xl font-bold">7</div>
+            <div class="opacity-90">New Modules</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">15+</div>
+            <div class="opacity-90">New Tables</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">20</div>
+            <div class="opacity-90">Week Roadmap</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">5</div>
+            <div class="opacity-90">External APIs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
