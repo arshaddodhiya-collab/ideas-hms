@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHCX Hackathon: Winning Solution Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Warm neutral background */
+            color: #1f2937;
+        }
+
+        /* Chart Container Styling per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .arch-box {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .arch-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 2px;
+            height: 2rem;
+            background-color: #e2e8f0;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        .step-connector:last-child::after {
+            display: none;
+        }
+
+        /* Active State Classes */
+        .tab-active {
+            border-bottom: 2px solid #3b82f6;
+            color: #1d4ed8;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-8 w-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xl">⚕</div>
+                <h1 class="text-xl font-bold text-gray-900">ABDM/NHCX <span class="text-blue-600">Architect's Console</span></h1>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-500">
+                <button onclick="scrollToSection('context')" class="hover:text-blue-600 transition">Context</button>
+                <button onclick="scrollToSection('architecture')" class="hover:text-blue-600 transition">Architecture</button>
+                <button onclick="scrollToSection('requirements')" class="hover:text-blue-600 transition">Specs</button>
+                <button onclick="scrollToSection('strategy')" class="hover:text-blue-600 transition">Strategy</button>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">Hackathon Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- Hero / Mission -->
+        <section class="bg-gradient-to-b from-blue-50 to-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Complete Winning Solution Blueprint</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                    An interactive strategic guide to conquering the ABDM NHCX Hackathon. 
+                    This dashboard synthesizes problem statements, architectural patterns, and execution strategies into a unified operational plan.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="scrollToSection('architecture')" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+                        View Architecture
+                    </button>
+                    <button onclick="scrollToSection('innovation')" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-sm border border-gray-200 hover:bg-gray-50 transition">
+                        Innovation Layer
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Problem Context & Stakeholders -->
+        <section id="context" class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">1. Problem Understanding & Ecosystem</h3>
+                    <p class="text-gray-600 mb-6">
+                        The challenge is to build a FHIR-compliant interoperability bridge that connects legacy Hospital Management Systems (HMIS) to the National Health Claims Exchange (NHCX). The goal is to automate claim processing, reducing manual intervention and time-to-settlement.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Stakeholders Chart -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-sm">
+                            <h4 class="font-semibold text-lg mb-4 text-center">Stakeholder Relationship Map</h4>
+                            <div class="chart-container">
+                                <canvas id="stakeholderChart"></canvas>
+                            </div>
+                            <p class="text-xs text-gray-500 text-center mt-2">
+                                Click segments to see role responsibilities.
+                            </p>
+                            <div id="stakeholder-detail" class="mt-4 p-4 bg-white rounded-lg border border-gray-200 text-sm hidden">
+                                <!-- Dynamic Content -->
+                            </div>
+                        </div>
+
+                        <!-- Workflow Comparison -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col">
+                            <h4 class="font-semibold text-lg mb-4">Workflow Transformation</h4>
+                            <div class="flex-grow space-y-4">
+                                <div class="p-4 bg-white border border-red-100 rounded-lg">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-bold text-red-600">Current (Legacy)</span>
+                                        <span class="text-2xl">🐢</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-600 list-disc ml-4 space-y-1">
+                                        <li>PDF/Paper based claims</li>
+                                        <li>Manual data entry errors</li>
+                                        <li>Non-standard formats (CSV, Excel)</li>
+                                        <li>High rejection rates</li>
+                                    </ul>
+                                </div>
+                                <div class="flex justify-center text-gray-400 text-2xl">↓</div>
+                                <div class="p-4 bg-white border border-green-100 rounded-lg">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-bold text-green-600">Target (NHCX)</span>
+                                        <span class="text-2xl">⚡</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-600 list-disc ml-4 space-y-1">
+                                        <li>FHIR (JSON) standard data</li>
+                                        <li>Real-time Validation (HCX Specifications)</li>
+                                        <li>Machine-readable Coverage & Claims</li>
+                                        <li>Automated Adjudication</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Architecture & Data Flow -->
+        <section id="architecture" class="py-12 bg-gray-50 border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">2. End-to-End System Architecture</h3>
+                        <p class="text-gray-600 mt-2">Interactive system design. Click on modules to view technical specifications.</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                            Pattern: Adapter / Middleware
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Interactive Architecture Diagram -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+                    
+                    <!-- Source Layer -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="font-bold text-center text-gray-500 uppercase text-xs tracking-wider mb-2">Provider Layer (HMIS)</div>
+                        <div onclick="showArchDetail('hmis')" class="arch-box bg-white p-4 rounded-lg border border-gray-200 shadow-sm text-center h-full flex flex-col justify-center items-center group">
+                            <div class="text-3xl mb-2">🏥</div>
+                            <div class="font-bold text-gray-800">Hospital MIS</div>
+                            <div class="text-xs text-gray-500 mt-1">Source of Truth</div>
+                            <div class="mt-2 text-xs bg-gray-100 px-2 py-1 rounded">Output: JSON/CSV</div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="lg:col-span-1 flex items-center justify-center text-gray-300 text-4xl hidden lg:flex">→</div>
+
+                    <!-- Middleware Layer (The Solution) -->
+                    <div class="lg:col-span-6 bg-white rounded-xl border-2 border-dashed border-blue-200 p-6 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                            Your Solution "The Bridge"
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 h-full">
+                            <!-- Integration Module -->
+                            <div onclick="showArchDetail('integration')" class="arch-box bg-blue-50 p-4 rounded-lg border border-blue-100 text-center">
+                                <div class="text-2xl mb-1">🔌</div>
+                                <div class="font-bold text-blue-900 text-sm">Integration Layer</div>
+                                <div class="text-xs text-blue-600">Connectors / Webhooks</div>
+                            </div>
+                            
+                            <!-- Transformation Module -->
+                            <div onclick="showArchDetail('converter')" class="arch-box bg-purple-50 p-4 rounded-lg border border-purple-100 text-center">
+                                <div class="text-2xl mb-1">🔄</div>
+                                <div class="font-bold text-purple-900 text-sm">FHIR Converter</div>
+                                <div class="text-xs text-purple-600">CSV/JSON → FHIR Bundle</div>
+                            </div>
+
+                            <!-- Validation Module -->
+                            <div onclick="showArchDetail('validator')" class="arch-box bg-green-50 p-4 rounded-lg border border-green-100 text-center">
+                                <div class="text-2xl mb-1">✅</div>
+                                <div class="font-bold text-green-900 text-sm">Validator Engine</div>
+                                <div class="text-xs text-green-600">Profile & Schema Check</div>
+                            </div>
+
+                            <!-- HCX Client Module -->
+                            <div onclick="showArchDetail('security')" class="arch-box bg-red-50 p-4 rounded-lg border border-red-100 text-center">
+                                <div class="text-2xl mb-1">🔒</div>
+                                <div class="font-bold text-red-900 text-sm">HCX Protocol Client</div>
+                                <div class="text-xs text-red-600">Encryption (JWE/JWS)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="lg:col-span-1 flex items-center justify-center text-gray-300 text-4xl hidden lg:flex">→</div>
+
+                    <!-- Destination Layer -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="font-bold text-center text-gray-500 uppercase text-xs tracking-wider mb-2">Network Layer</div>
+                        <div onclick="showArchDetail('gateway')" class="arch-box bg-gray-800 p-4 rounded-lg border border-gray-700 shadow-sm text-center h-full flex flex-col justify-center items-center text-white">
+                            <div class="text-3xl mb-2">🌐</div>
+                            <div class="font-bold">NHCX Gateway</div>
+                            <div class="text-xs text-gray-400 mt-1">Routing & Policy</div>
+                            <div class="mt-2 text-xs bg-gray-700 px-2 py-1 rounded">Output: Payer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Details Panel (Dynamic) -->
+                <div id="arch-details-panel" class="bg-white border-l-4 border-blue-500 shadow-lg rounded-r-lg p-6 hidden">
+                    <h4 id="arch-title" class="text-xl font-bold text-gray-800 mb-2">Select a module above</h4>
+                    <p id="arch-desc" class="text-gray-600 mb-4">Detailed technical specifications will appear here.</p>
+                    <div class="bg-gray-50 p-3 rounded text-sm font-mono text-gray-700">
+                        <strong>Tech Spec:</strong> <span id="arch-tech">N/A</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Requirements & Data Flow -->
+        <section id="requirements" class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Functional Requirements List -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">3. Functional Requirements</h3>
+                        <div class="space-y-4">
+                            <!-- Req Item -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-bold text-xs mt-0.5">1</div>
+                                <div class="ml-4">
+                                    <h5 class="text-base font-semibold text-gray-900">FHIR Bundle Generation</h5>
+                                    <p class="text-sm text-gray-500">Must support `Bundle` (document) type containing `Composition`, `Patient`, `Coverage`, `Claim`, `Encounter`, `Practitioner`, `Organization`.</p>
+                                </div>
+                            </div>
+                            <!-- Req Item -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-bold text-xs mt-0.5">2</div>
+                                <div class="ml-4">
+                                    <h5 class="text-base font-semibold text-gray-900">NHCX Profile Validation</h5>
+                                    <p class="text-sm text-gray-500">Validate against strict Implementation Guide (IG) profiles. Handle mandatory fields like `Beneficiary ID`, `Payer ID`.</p>
+                                </div>
+                            </div>
+                            <!-- Req Item -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-bold text-xs mt-0.5">3</div>
+                                <div class="ml-4">
+                                    <h5 class="text-base font-semibold text-gray-900">Security & Encryption</h5>
+                                    <p class="text-sm text-gray-500">Implement JWE (JSON Web Encryption) and JWS (Signature) for payload protection as per HCX protocol.</p>
+                                </div>
+                            </div>
+                            <!-- Req Item -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-bold text-xs mt-0.5">4</div>
+                                <div class="ml-4">
+                                    <h5 class="text-base font-semibold text-gray-900">Workflow Management</h5>
+                                    <p class="text-sm text-gray-500">Handle async flows: `check-eligibility` → `on-check-eligibility`, `submit-claim` → `on-submit-claim`.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FHIR Resource Tags -->
+                        <div class="mt-8">
+                            <h5 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Core FHIR Resources</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Patient</span>
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Coverage</span>
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Claim</span>
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Condition</span>
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Practitioner</span>
+                                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded border border-orange-200 font-mono">Organization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Data Flow -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Data Journey (Claim Submission)</h3>
+                        <div class="relative pl-4 space-y-0">
+                            
+                            <!-- Step 1 -->
+                            <div class="step-connector relative pb-8 group cursor-pointer" onclick="highlightStep(1)">
+                                <div class="absolute -left-4 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 ring-4 ring-white group-hover:bg-blue-500 transition" id="dot-1"></div>
+                                <div class="ml-4 p-3 rounded hover:bg-white hover:shadow-sm transition" id="card-1">
+                                    <h5 class="text-sm font-bold text-gray-900">1. Data Ingestion</h5>
+                                    <p class="text-xs text-gray-500">HMIS pushes Claim data (CSV/JSON).</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="step-connector relative pb-8 group cursor-pointer" onclick="highlightStep(2)">
+                                <div class="absolute -left-4 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 ring-4 ring-white group-hover:bg-blue-500 transition" id="dot-2"></div>
+                                <div class="ml-4 p-3 rounded hover:bg-white hover:shadow-sm transition" id="card-2">
+                                    <h5 class="text-sm font-bold text-gray-900">2. Normalization & Mapping</h5>
+                                    <p class="text-xs text-gray-500">Engine converts raw data to standard FHIR Resource objects.</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="step-connector relative pb-8 group cursor-pointer" onclick="highlightStep(3)">
+                                <div class="absolute -left-4 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 ring-4 ring-white group-hover:bg-blue-500 transition" id="dot-3"></div>
+                                <div class="ml-4 p-3 rounded hover:bg-white hover:shadow-sm transition" id="card-3">
+                                    <h5 class="text-sm font-bold text-gray-900">3. Validation & Bundle Creation</h5>
+                                    <p class="text-xs text-gray-500">Check against NHCX IG. Wrap in FHIR Bundle.</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="step-connector relative pb-8 group cursor-pointer" onclick="highlightStep(4)">
+                                <div class="absolute -left-4 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 ring-4 ring-white group-hover:bg-blue-500 transition" id="dot-4"></div>
+                                <div class="ml-4 p-3 rounded hover:bg-white hover:shadow-sm transition" id="card-4">
+                                    <h5 class="text-sm font-bold text-gray-900">4. Encryption & Dispatch</h5>
+                                    <p class="text-xs text-gray-500">Encrypt payload (JWE). API Call to /hcx/v1/claim/submit.</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="relative group cursor-pointer" onclick="highlightStep(5)">
+                                <div class="absolute -left-4 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 ring-4 ring-white group-hover:bg-blue-500 transition" id="dot-5"></div>
+                                <div class="ml-4 p-3 rounded hover:bg-white hover:shadow-sm transition" id="card-5">
+                                    <h5 class="text-sm font-bold text-gray-900">5. Callback Handling</h5>
+                                    <p class="text-xs text-gray-500">Receive /on_submit callback. Decrypt response & update HMIS.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Strategy & Innovation -->
+        <section id="strategy" class="py-12 bg-gray-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                    <h3 class="text-2xl font-bold">4. Innovation & Execution Strategy</h3>
+                    <div class="mt-4 md:mt-0 bg-gray-800 p-1 rounded-lg flex text-xs font-semibold">
+                        <button class="px-3 py-1 bg-blue-600 rounded text-white">Innovation</button>
+                        <button class="px-3 py-1 text-gray-400">Execution</button>
+                    </div>
+                </div>
+
+                <!-- Innovation Cards -->
+                <div id="innovation" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-purple-500 transition duration-300 group">
+                        <div class="text-purple-400 text-3xl mb-4 group-hover:scale-110 transition">✨</div>
+                        <h4 class="text-lg font-bold mb-2">Smart Mapper (NLP)</h4>
+                        <p class="text-gray-400 text-sm">Don't just code fields. Build a UI that accepts a CSV upload and uses simple fuzzy matching to suggest FHIR mappings automatically. Saves onboarding time.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300 group">
+                        <div class="text-blue-400 text-3xl mb-4 group-hover:scale-110 transition">🛠️</div>
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-lg font-bold mb-2">Visual Validator</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm">A "Linter" for medical claims. Visualize errors directly on the claim form before sending to NHCX. "Missing Diagnosis Code" highlighted in red.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition duration-300 group">
+                        <div class="text-green-400 text-3xl mb-4 group-hover:scale-110 transition">⚡</div>
+                        <h4 class="text-lg font-bold mb-2">Mock Data Generator</h4>
+                        <p class="text-gray-400 text-sm">Includes a built-in module to generate valid, randomized FHIR patient/claim data for testing. Solves the "lack of test data" problem for judges.</p>
+                    </div>
+                </div>
+
+                <!-- Evaluation & Tech Stack Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Tech Stack -->
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h4 class="font-bold text-lg mb-4 border-b border-gray-700 pb-2">Recommended Tech Stack</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Backend API</span>
+                                    <span class="text-blue-400 font-mono">Node.js / Python (FastAPI)</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Node.js great for JSON handling (FHIR). Python great for data mapping.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Frontend</span>
+                                    <span class="text-teal-400 font-mono">React / Next.js + Tailwind</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-teal-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Database</span>
+                                    <span class="text-yellow-400 font-mono">PostgreSQL (JSONB) / MongoDB</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Must store complex JSON structures natively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evaluation Criteria -->
+                    <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center">
+                        <h4 class="font-bold text-lg mb-2 w-full text-left border-b border-gray-700 pb-2">Jury Scoring Focus</h4>
+                        <div class="chart-container">
+                            <canvas id="scoreChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 72 Hour Plan -->
+                <div class="mt-12">
+                    <h4 class="font-bold text-lg mb-6">72-Hour Hackathon Execution Plan</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-gray-800 p-4 rounded border-t-4 border-blue-500">
+                            <div class="font-bold text-xl text-blue-400 mb-1">Day 1</div>
+                            <div class="text-sm font-semibold text-white">Core & Connectors</div>
+                            <ul class="text-xs text-gray-400 mt-2 space-y-1 text-left pl-4 list-disc">
+                                <li>Setup Repo & Boilerplate</li>
+                                <li>Implement HCX JWE/JWS Encryption</li>
+                                <li>Build "CSV to JSON" raw parser</li>
+                                <li>Basic UI Shell</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded border-t-4 border-purple-500">
+                            <div class="font-bold text-xl text-purple-400 mb-1">Day 2</div>
+                            <div class="text-sm font-semibold text-white">Logic & Validation</div>
+                            <ul class="text-xs text-gray-400 mt-2 space-y-1 text-left pl-4 list-disc">
+                                <li>Implement FHIR Bundle mapping logic</li>
+                                <li>Integrate Validation against Profiles</li>
+                                <li>Connect UI to Backend API</li>
+                                <li>Test with Sandbox Credentials</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded border-t-4 border-green-500">
+                            <div class="font-bold text-xl text-green-400 mb-1">Day 3</div>
+                            <div class="text-sm font-semibold text-white">Polish & Pitch</div>
+                            <ul class="text-xs text-gray-400 mt-2 space-y-1 text-left pl-4 list-disc">
+                                <li>Visualize the Claim Status Flow</li>
+                                <li>Create "One-Click Demo" button</li>
+                                <li>Prepare Presentation Deck</li>
+                                <li>Record Video Demo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold text-lg">ABDM Architect</span>
+                <p class="text-gray-400 text-xs mt-1">Generated for NHCX Hackathon Strategy</p>
+            </div>
+            <div class="text-xs text-gray-500 text-center md:text-right">
+                <p>Ensure Sandbox Keys are valid before demo.</p>
+                <p>Focus on Happy Path for the Jury.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Navigation ---
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- Charts Implementation ---
+        
+        // 1. Stakeholder Pie Chart
+        const ctxStakeholder = document.getElementById('stakeholderChart').getContext('2d');
+        const stakeholderChart = new Chart(ctxStakeholder, {
+            type: 'doughnut',
+            data: {
+                labels: ['Provider (Hospital)', 'Payer (Insurer)', 'NHCX (Gateway)', 'Beneficiary'],
+                datasets: [{
+                    data: [35, 35, 20, 10],
+                    backgroundColor: ['#3b82f6', '#10b981', '#6b7280', '#f59e0b'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label;
+                            }
+                        }
+                    }
+                },
+                onClick: (e, elements) => {
+                    if(elements.length > 0) {
+                        const index = elements[0].index;
+                        updateStakeholderDetails(index);
+                    }
+                }
+            }
+        });
+
+        // 2. Scoring Radar Chart
+        const ctxScore = document.getElementById('scoreChart').getContext('2d');
+        const scoreChart = new Chart(ctxScore, {
+            type: 'radar',
+            data: {
+                labels: ['Innovation', 'Impact', 'Scalability', 'Tech Depth', 'ABDM Alignment'],
+                datasets: [{
+                    label: 'Target Score Profile',
+                    data: [90, 85, 80, 95, 100],
+                    fill: true,
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgb(59, 130, 246)',
+                    pointBackgroundColor: 'rgb(59, 130, 246)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(59, 130, 246)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                        pointLabels: { color: 'white' },
+                        ticks: { display: false, backdropColor: 'transparent' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // --- Interaction Logic ---
+
+        // Stakeholder Details Data
+        const stakeholderData = [
+            { role: "Provider (HMIS)", task: "Generates claim data, digitizes records, initiates requests." },
+            { role: "Payer (Insurer)", task: "Validates policy, adjudicates claims, approves/rejects payment." },
+            { role: "NHCX (Gateway)", task: "Routes messages, validates schema, ensures interoperability." },
+            { role: "Beneficiary", task: "Provides consent, receives status updates." }
+        ];
+
+        function updateStakeholderDetails(index) {
+            const detailDiv = document.getElementById('stakeholder-detail');
+            const data = stakeholderData[index];
+            detailDiv.innerHTML = `<strong>${data.role}:</strong> ${data.task}`;
+            detailDiv.classList.remove('hidden');
+        }
+
+        // Architecture Details Data
+        const archDetails = {
+            'hmis': {
+                title: "Hospital Management System (HMIS)",
+                desc: "The legacy system where patient data resides. Usually sends data in non-standard formats (CSV, SQL dump).",
+                tech: "Source Input (CSV/JSON)"
+            },
+            'integration': {
+                title: "Integration Layer",
+                desc: "API endpoints or file watchers that detect new claims ready for submission. Acts as the entry point to your solution.",
+                tech: "Node.js Express / Python FastAPI"
+            },
+            'converter': {
+                title: "FHIR Converter Engine",
+                desc: "The core logic. Maps fields like 'Pat_Name' to 'Patient.name'. Constructs complex nested JSON objects required by FHIR bundles.",
+                tech: "JSON Mapping Libraries, Custom Logic"
+            },
+            'validator': {
+                title: "Validation Engine",
+                desc: "Checks the generated JSON against NHCX Structure Definitions (Profiles). Ensures mandatory fields exist before sending.",
+                tech: "FHIR Validator (HAPI FHIR or JS Implementation)"
+            },
+            'security': {
+                title: "HCX Protocol Client",
+                desc: "Wraps the FHIR bundle in JWE (Encryption) and signs it (JWS). Handles the specific header requirements of HCX.",
+                tech: "Jose / JWCrypto Libraries"
+            },
+            'gateway': {
+                title: "NHCX Gateway",
+                desc: "The government infrastructure. It receives your encrypted packet, checks the routing headers, and forwards it to the correct insurance company.",
+                tech: "External API Endpoint"
+            }
+        };
+
+        function showArchDetail(key) {
+            const panel = document.getElementById('arch-details-panel');
+            const data = archDetails[key];
+            
+            document.getElementById('arch-title').textContent = data.title;
+            document.getElementById('arch-desc').textContent = data.desc;
+            document.getElementById('arch-tech').textContent = data.tech;
+            
+            panel.classList.remove('hidden');
+        }
+
+        // Data Flow Stepper Logic
+        function highlightStep(stepNum) {
+            // Reset all
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`dot-${i}`).classList.remove('bg-blue-600', 'ring-blue-200');
+                document.getElementById(`dot-${i}`).classList.add('bg-gray-300', 'ring-white');
+                document.getElementById(`card-${i}`).classList.remove('bg-blue-50', 'border-l-4', 'border-blue-500');
+            }
+            
+            // Highlight selected
+            const dot = document.getElementById(`dot-${stepNum}`);
+            const card = document.getElementById(`card-${stepNum}`);
+            
+            dot.classList.remove('bg-gray-300', 'ring-white');
+            dot.classList.add('bg-blue-600', 'ring-blue-200');
+            
+            card.classList.add('bg-blue-50', 'border-l-4', 'border-blue-500');
+        }
+
+        // Initialize first step highlight
+        highlightStep(1);
+
+    </script>
+    
+    <!-- Chosen Palette: Trust Blue (#3b82f6) + Medical Green (#10b981) + Innovation Purple (#8b5cf6) on Clean White/Gray -->
+    
+    <!-- Application Structure Plan: 
+         Designed as an "Architect's Console" to serve as a real-time reference during the hackathon.
+         1. Context Section: Sets the stage (Problem Understanding) using comparative visuals.
+         2. Architecture Section: The core "Blueprint" - interactive diagram allowing deep dives into modules without cluttering the view.
+         3. Requirements & Flow: Step-by-step logic guide for developers to follow during implementation.
+         4. Strategy Section: Innovation suggestions and a timeline to keep the team on track for a win.
+         This structure mimics the thought process of a Solution Architect: Understand -> Design -> Specify -> Execute.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Stakeholder Doughnut Chart: Goal: Inform. Method: Chart.js. Interaction: Click slice to see role. Why: Quickly identifying actors in the ecosystem is crucial for beginners.
+         2. Comparison Cards (Workflow): Goal: Compare. Method: Side-by-side div. Why: Highlights the value prop (Old vs New).
+         3. Architecture Grid: Goal: Organize/relationships. Method: CSS Grid + JS Interaction. Why: Architecture diagrams are complex; interactive hiding/showing details keeps it clean. NO SVG used (using CSS boxes/icons).
+         4. Radar Chart: Goal: Strategy. Method: Chart.js. Why: Visualizes where to focus effort to maximize hackathon scoring criteria.
+         5. Stepper: Goal: Process Flow. Method: CSS/JS interactive list. Why: Developers need a linear guide for data transformation.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used (Chart.js uses Canvas, icons are Unicode). NO Mermaid JS used. -->
+
+</body>
+</html>

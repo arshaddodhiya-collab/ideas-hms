@@ -1,4 +1,4 @@
-# Problem Statement Title
+    # Problem Statement Title
 **Legacy Systems to NHCX-aligned FHIR Convertor (specifically Coverage Eligibility, Claim, Communication)**
 
 ## Category
